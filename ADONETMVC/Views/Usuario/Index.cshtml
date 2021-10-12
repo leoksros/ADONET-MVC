@@ -1,0 +1,48 @@
+﻿@model List<ADONETMVC.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Usuario</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Clave</th>
+        <th>Email</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @item.nombre_usuario
+    </td>
+    <td>
+        @item.nombre
+    </td>
+    <td>
+        @item.apellido
+    </td>
+    <td>
+        @item.clave
+    </td>
+    <td>
+        @item.email
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>
+
+    }
+
+</table>
