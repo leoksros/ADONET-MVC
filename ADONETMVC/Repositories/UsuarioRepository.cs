@@ -12,8 +12,8 @@ namespace ADONETMVC.Repositories
     public class UsuarioRepository
     {
 
-        
-        public List<Usuario> GetUsuarios()
+
+        public List<Usuario> GetAll()
         {
             List<Usuario> usuarios = new List<Usuario>();
 
@@ -39,9 +39,7 @@ namespace ADONETMVC.Repositories
                         usuario.email = reader.GetString(4);
                         usuario.clave = reader.GetString(5);
 
-
                         usuarios.Add(usuario);
-                       
                     }
                     reader.Close(); 
                     connection.Close(); //cierra la conexión
@@ -52,6 +50,36 @@ namespace ADONETMVC.Repositories
                 }
             }
             return usuarios;
+        }
+
+        public void Create()
+        {
+            string query = "insert into usuarios(nombre_usuario,nombre,apellido,clave,email) " +
+                           "values(@nombre_usuario,@nombre,@apellido,@clave,@email)";
+
+            Connection Connection = new Connection();
+
+            using (SqlConnection connection = new SqlConnection(Connection.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                //command.Parameters.AddWithValue("@nombre_usuario", nombre_usuario);
+                //command.Parameters.AddWithValue("@nombre", nombre);
+                //command.Parameters.AddWithValue("@apellido", apellido);
+                //command.Parameters.AddWithValue("@clave", clave);
+                //command.Parameters.AddWithValue("@email", email);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Error en la consulta a la DB");
+                }
+            }
+
         }
     }
 }

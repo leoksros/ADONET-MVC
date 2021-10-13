@@ -19,8 +19,19 @@ namespace ADONETMVC.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
-            List<Usuario> usuarios = usuarioRepository.GetUsuarios();
+            List<Usuario> usuarios = usuarioRepository.GetAll();
             return View("Index",usuarios);
+        }
+
+        public ActionResult Create()
+        {
+            return View("Nuevo");
+        }
+
+        [HttpPost]
+        public ActionResult Store(Usuario usuario)
+        {
+            return RedirectToAction("Index","Usuario");
         }
     }
 }
