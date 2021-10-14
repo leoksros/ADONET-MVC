@@ -15,17 +15,5 @@ namespace ADONETMVC.DataBase
             connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
 
-        public bool ConnectionStatus()
-        {
-            try
-            {
-                SqlConnection connection = new SqlConnection(connectionString);
-                connection.Open();
-            } catch
-            {
-                return false;
-            }
-            return true;
-        }
     }
 }

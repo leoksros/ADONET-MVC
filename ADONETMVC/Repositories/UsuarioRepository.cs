@@ -7,9 +7,9 @@ using ADONETMVC.Models;
 using ADONETMVC.Repositories;
 using ADONETMVC.DataBase;
 
-namespace ADONETMVC.Repositories
+namespace ADONETMVC.Repositories 
 {
-    public class UsuarioRepository
+    public class UsuarioRepository : Connection
     {
 
         public Usuario Get(int id)
@@ -17,9 +17,7 @@ namespace ADONETMVC.Repositories
             string query = "select id_usuario, nombre_usuario,nombre,apellido,email,clave from usuarios " +
                            "where id_usuario = @id_usuario";
 
-            Connection Connection = new Connection();
-
-            using (SqlConnection connection = new SqlConnection(Connection.connectionString))
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id_usuario", id);
@@ -58,9 +56,7 @@ namespace ADONETMVC.Repositories
 
             string query = "select id_usuario, nombre_usuario,nombre,apellido,email,clave from usuarios";
 
-            Connection Connection = new Connection();
-
-            using (SqlConnection connection = new SqlConnection(Connection.connectionString))
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
 
@@ -96,9 +92,7 @@ namespace ADONETMVC.Repositories
             string query = "insert into usuarios(nombre_usuario,nombre,apellido,clave,email,habilitado) " +
                            "values(@nombre_usuario,@nombre,@apellido,@clave,@email,@habilitado)";
 
-            Connection Connection = new Connection();
-
-            using (SqlConnection connection = new SqlConnection(Connection.connectionString))
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@nombre_usuario", usuario.nombre_usuario);
@@ -133,9 +127,7 @@ namespace ADONETMVC.Repositories
                                         "habilitado = @habilitado " +
                                         "where id_usuario = @id_usuario";
 
-            Connection Connection = new Connection();
-
-            using (SqlConnection connection = new SqlConnection(Connection.connectionString))
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id_usuario", usuario.id_usuario);
@@ -164,8 +156,8 @@ namespace ADONETMVC.Repositories
         {
             string query = "delete from usuarios where id_usuario = @id_usuario";
 
-            Connection Connection = new Connection();
-            using (SqlConnection connection = new SqlConnection(Connection.connectionString))
+            //Connection Connection = new Connection();
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id_usuario", id);
