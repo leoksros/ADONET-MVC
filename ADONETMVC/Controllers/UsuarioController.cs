@@ -31,7 +31,27 @@ namespace ADONETMVC.Controllers
         [HttpPost]
         public ActionResult Store(Usuario usuario)
         {
+            this.usuarioRepository.Create(usuario);
             return RedirectToAction("Index","Usuario");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Usuario usuario = this.usuarioRepository.Get(id);
+            return View("Editar",usuario);
+        }
+
+        public ActionResult Update(Usuario usuario)
+        {
+            this.usuarioRepository.Update(usuario);
+            return RedirectToAction("Index", "Usuario");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            this.usuarioRepository.Delete(id);
+            return RedirectToAction("Index", "Usuario");
+
         }
     }
 }

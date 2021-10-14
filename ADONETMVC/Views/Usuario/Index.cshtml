@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crear nuevo", "Nuevo")
+    @Html.ActionLink("Crear nuevo", "Crear")
 </p>
 <table class="table">
     <tr>
@@ -37,9 +37,9 @@
         @item.email
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        @Html.ActionLink("Edit", "Editar", new { id = item.id_usuario }) |
+        @*@Html.ActionLink("Details", "Details", new { usuario = item }) |*@
+        @Html.ActionLink("Delete", "Borrar", new { id = item.id_usuario })
     </td>
 </tr>
 
